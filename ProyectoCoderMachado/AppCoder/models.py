@@ -24,8 +24,4 @@ class Entregable(models.Model):
     fecha_entrega = models.DateField()
     entregado = models.BooleanField()
 
-class Producto(models.Model):
-    nombre = models.CharField(max_length=50)
-    descripcion = models.TextField()
-    cantidad_en_stock = models.IntegerField()
 

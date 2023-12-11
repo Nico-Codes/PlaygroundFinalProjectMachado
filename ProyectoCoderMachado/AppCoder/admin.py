@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Producto,Profesor,Estudiante
+from .models import Curso,Profesor,Estudiante
 
-admin.site.register(Producto)
+admin.site.register(Curso)
 admin.site.register(Profesor)
 admin.site.register(Estudiante)

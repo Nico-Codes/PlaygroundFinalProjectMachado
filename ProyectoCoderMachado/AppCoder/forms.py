@@ -10,3 +10,7 @@ class EstudianteFormulario(forms.Form):
     nombre = forms.CharField()
     apellido = forms.CharField()
     telefono = forms.CharField()
+
+class CursoFormulario(forms.Form):
+    nombre = forms.CharField()
+    camada = forms.IntegerField()
