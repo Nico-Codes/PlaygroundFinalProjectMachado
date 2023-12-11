@@ -8,4 +8,15 @@
 <p>Se ha heredado todo desde la plantilla padre</p>
 <h3>En el hijo, inicio.html, casi no hay nada :)</h3>
 
+<form action="" method="post">
+    
+{% csrf_token %}
+
+<p> Nombre del producto: <input type="text" name="nombre">
+<p> Descripcion del producto: <input type="text" name="descripcion">
+<p> Cantidad de stock: <input type="number" name="cantidad_en_stock">
+<input type="submit" value="Enviar">
+
+</form>
+
 {% endblock contenidoQueCambia %}

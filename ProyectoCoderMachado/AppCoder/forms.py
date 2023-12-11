@@ -1,7 +1,12 @@
 from django import forms
 
-class InsumoFormulario(forms.Form):
+class ProfesorFormulario(forms.Form):
     nombre = forms.CharField()
-    descripcion = forms.CharField()
-    unidad_de_medida = forms.CharField()
-    cantidad_en_stock = forms.IntegerField()
+    apellido = forms.CharField()
+    email = forms.EmailField()
+    profesion = forms.CharField()
+
+class EstudianteFormulario(forms.Form):
+    nombre = forms.CharField()
+    apellido = forms.CharField()
+    telefono = forms.CharField()

@@ -9,7 +9,9 @@ class Curso(models.Model):
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=30)
     apellido = models.CharField(max_length=30)
-    email = models.EmailField()
+    telefono = models.CharField(max_length=15, blank=True, null=True)
+    
+
 
 class Profesor(models.Model):
     nombre = models.CharField(max_length=30)
@@ -27,8 +29,3 @@ class Producto(models.Model):
     descripcion = models.TextField()
     cantidad_en_stock = models.IntegerField()
 
-class Insumo(models.Model):
-    nombre = models.CharField(max_length=50)
-    descripcion = models.TextField()
-    unidad_de_medida = models.CharField(max_length=20)
-    cantidad_en_stock = models.IntegerField()

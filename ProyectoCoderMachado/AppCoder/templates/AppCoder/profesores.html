@@ -6,6 +6,17 @@
 
 <h1>Pagina Profesores</h1>
 <p>Se ha heredado todo desde la plantilla padre</p>
-<h3>En el hijo, inicio.html, casi no hay nada :)</h3>
+
+
+<form action="" method="post">
+    
+{% csrf_token %}
+
+    <table>
+        {{formulario.as_table}}
+    </table>
+    <input type="submit" value="Enviar">
+
+</form>
 
 {% endblock contenidoQueCambia %}
