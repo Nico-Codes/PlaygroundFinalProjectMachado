@@ -8,9 +8,13 @@
 <p>Se ha heredado todo desde la plantilla padre</p>
 
 
+
 <form action="" method="post">
-    
-{% csrf_token %}
+    {% csrf_token %}
+
+    {% if formulario.errors %}
+    <p style="color: red;">Datos incorrectos, vuelve a intentarlo</p>
+    {% endif %}
 
     <table>
         {{formulario.as_table}}

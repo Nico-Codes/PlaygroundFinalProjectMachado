@@ -1,0 +1,17 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h1>Login</h1>
+
+<form action="" method="post">
+
+     {% csrf_token %}
+       {{form.as_p}}
+     <button type="submit">Iniciar secion</button>
+
+</form>
+
+{% endblock contenidoQueCambia %}

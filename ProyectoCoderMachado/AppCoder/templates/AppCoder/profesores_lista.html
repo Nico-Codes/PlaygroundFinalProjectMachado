@@ -1,0 +1,13 @@
+<!-- AppCoder/profesores_lista.html -->
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+  <h1>Lista de Profesores</h1>
+  <ul>
+    {% for profesor in profesores %}
+      <li><a href="{% url 'DetalleProfesor' pk=profesor.pk %}">{{ profesor.nombre }} {{ profesor.apellido }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endblock contenidoQueCambia %}

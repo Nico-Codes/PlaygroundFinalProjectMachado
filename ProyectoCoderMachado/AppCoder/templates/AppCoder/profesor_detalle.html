@@ -1,0 +1,10 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+  <h1>{{ profesor.nombre }} {{ profesor.apellido }}</h1>
+  <p>Email: {{ profesor.email }}</p>
+  <p>Profesión: {{ profesor.profesion }}</p>
+  <!-- Agrega más detalles según sea necesario -->
+  {% endblock contenidoQueCambia %}
