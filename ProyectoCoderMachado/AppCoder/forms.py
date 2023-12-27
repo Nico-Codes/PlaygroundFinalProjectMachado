@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from AppCoder.models import Profesor, Curso
+from AppCoder.models import Curso
 
-class ProfesorForm(forms.ModelForm):
-    class Meta:
-        model = Profesor
-        fields = '__all__'
+class ProfesorFormulario(forms.Form):
+    nombre = forms.CharField()
+    apellido = forms.IntegerField()
+    profesion = forms.CharField(widget=forms.Textarea)
 
 class InscripcionFormulario(forms.Form):
     curso = forms.ModelChoiceField(queryset=Curso.objects.all())
@@ -39,6 +39,7 @@ class UserCreationFormCustom(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Este correo electrónico ya está en uso. Por favor, elige otro.')
         return email
+
 
 class UserEditForm(UserChangeForm):
     password = None

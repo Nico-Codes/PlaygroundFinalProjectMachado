@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseForbidden
-from .forms import ProfesorForm, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm, InscripcionForm
+from .forms import ProfesorFormulario, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm, InscripcionForm
 from .models import Curso, Inscripcion, Profesor, Avatar
 from django.shortcuts import render
 from AppCoder import forms
@@ -21,36 +21,6 @@ def inicio(request):
 def es_superusuario(user):
     return user.is_superuser
 
-
-
-@user_passes_test(es_superusuario)
-def profesores(request):
-    usuario_id = request.user.id
-
-    # Verificar si el profesor ya existe
-    if Profesor.objects.filter(usuario__id=usuario_id).exists():
-
-        # Puedes redirigir o mostrar un mensaje indicando que el profesor ya existe
-        return render(request, 'AppCoder/profesores.html')
-
-    if request.method == "POST":
-        nuevo_profesor = ProfesorForm(request.POST)
-        if nuevo_profesor.is_valid():
-            # No necesitas crear un nuevo formulario, puedes acceder a los datos directamente
-            informacion = nuevo_profesor.cleaned_data
-            nuevo_profesor = Profesor(
-                usuario_id=usuario_id,
-                nombre=informacion["nombre"],
-                apellido=informacion["apellido"],
-                email=informacion["email"],
-                profesion=informacion["profesion"]
-            )
-            nuevo_profesor.save()
-            return render(request, 'AppCoder/inicio.html')
-    else:
-        nuevo_profesor = ProfesorForm()
-
-    return render(request, 'AppCoder/profesores.html', {"formulario": nuevo_profesor})
 
 def inscripcion(request):
     if request.method == "POST":
@@ -75,8 +45,6 @@ def inscripcion(request):
 def es_superusuario(user):
     return user.is_superuser
 
-def es_superusuario(user):
-    return user.is_superuser
 
 class SuperusuarioMixin:
     @method_decorator(user_passes_test(es_superusuario, login_url=None))
@@ -85,40 +53,35 @@ class SuperusuarioMixin:
             return HttpResponseForbidden("Acceso denegado")
         return super().dispatch(*args, **kwargs)
 
+
 class ProfesorListView(ListView):
     model = Profesor
-    context_object_name = 'profesores'
-    template_name = 'AppCoder/profesores_lista.html'
+    context_object_name = "profesores"
+    template_name = "AppCoder/profesores_lista.html"
 
 class ProfesorDetailView(DetailView):
     model = Profesor
-    template_name = 'AppCoder/profesor_detalle.html'
+    template_name = "AppCoder/profesor_detalle.html"
 
 @method_decorator(user_passes_test(es_superusuario), name='dispatch')
 class ProfesorCreateView(SuperusuarioMixin, CreateView):
     model = Profesor
-    form_class = ProfesorForm  # Cambiado a ProfesorForm
-    template_name = 'AppCoder/profesor_form.html'
-    success_url = 'AppCoder/inicio.html'
+    template_name = "AppCoder/profesor_crear.html"
+    success_url = reverse_lazy('ListaProfesores')
+    fields = ['nombre', 'apellido','profesion']
 
 @method_decorator(user_passes_test(es_superusuario), name='dispatch')
 class ProfesorUpdateView(SuperusuarioMixin, UpdateView):
     model = Profesor
-    template_name = 'AppCoder/profesor_editar.html'
-    form_class = forms.ProfesorForm
+    template_name = "AppCoder/profesor_editar.html"
     success_url = reverse_lazy('ListaProfesores')
+    fields = ['nombre', 'apellido','profesion']
 
 @method_decorator(user_passes_test(es_superusuario), name='dispatch')
 class ProfesorDeleteView(SuperusuarioMixin, DeleteView):
     model = Profesor
-    template_name = 'AppCoder/profesor_borrar.html'
+    template_name = "AppCoder/profesor_borrar.html"
     success_url = reverse_lazy('ListaProfesores')
-
-def inscribirse_en_profesor(request, profesor_id):
-    if request.method == 'POST':
-        # Lógica para inscribirse en un profesor
-        pass
-    return render(request, 'AppCoder/inicio.html', {'profesor_id': profesor_id})
 
 class SuperusuarioMixin(UserPassesTestMixin):
     def test_func(self):
@@ -153,6 +116,7 @@ class CursoDeleteView(SuperusuarioMixin, DeleteView):
     template_name = "AppCoder/curso_borrar.html"
     success_url = reverse_lazy('ListaCursos')
 
+@login_required
 def inscribirse_en_curso(request, curso_id):
     if request.method == 'POST':
         formulario = InscripcionForm(request.POST)

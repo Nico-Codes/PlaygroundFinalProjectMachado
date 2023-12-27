@@ -3,8 +3,15 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-  <h1>{{ profesor.nombre }} {{ profesor.apellido }}</h1>
-  <p>Email: {{ profesor.email }}</p>
-  <p>Profesión: {{ profesor.profesion }}</p>
-  <!-- Agrega más detalles según sea necesario -->
-  {% endblock contenidoQueCambia %}
+
+<h1>Profesor Detalle</h1>
+
+<p>Nombre: <i> {{profesor.nombre}} </i></p>
+<p>Apellido: <i> {{profesor.apellido}} </i></p>
+<p>Profesion: <i> {{profesor.profesion}} </i></p>
+<p>
+    <a href="{% url 'ListaProfesores' %}">Regresar</a>
+</p>
+</form>
+
+{% endblock contenidoQueCambia %}

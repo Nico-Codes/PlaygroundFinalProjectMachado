@@ -3,10 +3,15 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-  <h1>Editar Profesor: {{ profesor.nombre }} {{ profesor.apellido }}</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar cambios</button>
-  </form>
-  {% endblock contenidoQueCambia %}
+
+<h1>Editar Profesor</h1>
+
+<form action="" method="post">
+
+     {% csrf_token %}
+     {{form.as_p}}
+     <input type="submit" value="Editar">
+
+</form>
+
+{% endblock contenidoQueCambia %}
