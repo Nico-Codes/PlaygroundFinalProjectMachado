@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseForbidden
-from .forms import ProfesorFormulario, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm, InscripcionForm
+from .forms import ProfesorFormulario, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm
 from .models import Curso, Inscripcion, Profesor, Avatar
 from django.shortcuts import render
 from AppCoder import forms
@@ -27,21 +27,17 @@ def inscripcion(request):
         nuevo_inscripto = InscripcionFormulario(request.POST)
         if nuevo_inscripto.is_valid():
             informacion = nuevo_inscripto.cleaned_data
-            curso_elegido = informacion["curso"]
-            nombre = informacion["nombre"]
-            apellido = informacion["apellido"]
-            telefono = informacion["telefono"]
-
-            # Realiza las operaciones necesarias con los datos del formulario
-            # Por ejemplo, crear una nueva inscripción en la base de datos
-
+            Inscripcion.objects.create(
+                curso=informacion["curso"],
+                nombre=informacion["nombre"],
+                apellido=informacion["apellido"],
+                telefono=informacion["telefono"],
+            )
             return render(request, 'AppCoder/mensaje_inscripcion.html')
-
     else:
         nuevo_inscripto = InscripcionFormulario()
-
-    return render(request, 'AppCoder/inscripcion.html', {"inscripcion": nuevo_inscripto})
-
+        inscripciones = Inscripcion.objects.all()  # Recuperar todas las inscripciones
+        return render(request, 'AppCoder/inscripcion.html', {"form": nuevo_inscripto, "inscripciones": inscripciones})
 def es_superusuario(user):
     return user.is_superuser
 
@@ -116,16 +112,8 @@ class CursoDeleteView(SuperusuarioMixin, DeleteView):
     template_name = "AppCoder/curso_borrar.html"
     success_url = reverse_lazy('ListaCursos')
 
-@login_required
-def inscribirse_en_curso(request, curso_id):
-    if request.method == 'POST':
-        formulario = InscripcionForm(request.POST)
-        if formulario.is_valid():
-            curso = Curso.objects.get(id=formulario.cleaned_data['curso_id'])
-            usuario = request.user
-            if not Inscripcion.objects.filter(usuario=usuario, curso=curso).exists():
-                Inscripcion.objects.create(usuario=usuario, curso=curso)
-    return render(request, "AppCoder/inicio.html", {"curso_id": curso_id})
+def sobremi_view(request):
+    return render(request, 'AppCoder/sobremi.html')
 
 def login_request(request):
     if request.method == 'POST':

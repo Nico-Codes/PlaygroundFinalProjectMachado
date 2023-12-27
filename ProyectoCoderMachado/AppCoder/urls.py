@@ -35,6 +35,7 @@ urlpatterns = [
     path('cambiar_contrasenia/', views.cambiar_contrasenia, name='cambiar_contrasenia'),
     path('contrasenia_cambiada/', views.contrasenia_cambiada, name='contraseña_cambiada'),
 
+    path('sobremi/', views.sobremi_view, name='sobremi'),
 ]   
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

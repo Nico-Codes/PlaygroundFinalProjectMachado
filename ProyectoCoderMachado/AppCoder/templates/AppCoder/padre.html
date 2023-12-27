@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/AppCoder/static/AppCoder/css/style.css">
-
-    <title>Level HTML Template by Tooplate</title>
+    <script src="https://kit.fontawesome.com/f5a82dd20e.js" crossorigin="anonymous"></script>
+    <title>CursosOnline</title>
+    <link rel="shortcut icon" href="/AppCoder/static/AppCoder/img/cursosonlinelogo.png">
 <body>
     <header>
         <a href="{% url 'inicio' %}" class="logo">
@@ -39,10 +40,43 @@
             </div>
         </nav>
     </header>
+
     {% block contenidoQueCambia %}
 
 
 
     {% endblock contenidoQueCambia %}
+    <footer class="pie-pagina">
+        <div class="grupo-1">
+            <div class="box">
+                <figure>
+                    <a href="#">
+                        <img src="/AppCoder/static/AppCoder/img/cursosonlinelogo.png" alt="">
+                    </a>
+                </figure>
+            </div>
+            <div class="box">
+                <h2>SOBRE MI</h2>
+                <p>Soy Nicolás Machado, programador especializado en Python, HTML y CSS. Con experiencia en desarrollo web y análisis de datos, me apasiona crear soluciones innovadoras y centradas en el usuario. Activo en la comunidad de desarrollo, estoy listo para nuevos desafíos y colaboraciones emocionantes. ¡Conéctate para discutir proyectos tecnológicos!
+
+                </p>
+                <button><a href="{% url 'sobremi' %}">Mas sobre mi</a></button>
+            </div>
+            <div class="box">
+                <h2>SEGUIME</h2>
+                <div class="red-social">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>
+                &copy; 2024 <b>Cursos Online</b> - Todos los Derechos Reservados.
+            </small>
+        </div>
+    </footer>
 </body>
    

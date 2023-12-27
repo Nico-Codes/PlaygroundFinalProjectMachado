@@ -9,19 +9,17 @@ class ProfesorFormulario(forms.Form):
     profesion = forms.CharField(widget=forms.Textarea)
 
 class InscripcionFormulario(forms.Form):
-    curso = forms.ModelChoiceField(queryset=Curso.objects.all())
+    curso = forms.ModelChoiceField(queryset=Curso.objects.all(), required=True)
     
-    nombre = forms.CharField(max_length=30)
-    apellido = forms.CharField(max_length=30)
-    telefono = forms.CharField(max_length=15, required=False)
+    nombre = forms.CharField(max_length=30, required=True)
+    apellido = forms.CharField(max_length=30, required=True)
+    telefono = forms.CharField(max_length=15, required=True)
 
 class CursoFormulario(forms.Form):
-    nombre = forms.CharField()
-    camada = forms.IntegerField()
-    descripcion = forms.CharField(widget=forms.Textarea)
+    nombre = forms.CharField(required=True)
+    camada = forms.IntegerField(required=True)
+    descripcion = forms.CharField(widget=forms.Textarea, required=False)
 
-class InscripcionForm(forms.Form):
-    curso_id = forms.IntegerField(widget=forms.HiddenInput())
 
 class UserCreationFormCustom(UserCreationForm):
     username = forms.CharField(label="Usuario")
