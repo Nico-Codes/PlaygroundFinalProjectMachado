@@ -24,6 +24,15 @@ header{
 }
 
 
+button{
+    padding: 7px;
+    border-radius: 30px;
+    background-color: #0d2033;
+    border: 3px solid  white;
+    color: white;
+    
+}
+
 
 .logo{
     display: flex;
