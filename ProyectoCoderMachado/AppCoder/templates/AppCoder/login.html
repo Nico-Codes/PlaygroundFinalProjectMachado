@@ -4,15 +4,24 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Iniciar secion</h1>
+<div class="relleno">
 
-<form action="" method="post">
+<div class="relleno-curso">
 
-     {% csrf_token %}
-       {{form.as_p}}
-     <button type="submit">Iniciar secion</button>
+  <h1>Iniciar secion</h1>
 
-</form>
-<h3>¿aun no tiene una cuenta?</h3>
-     <button><a href="{% url 'Registro' %}">Registrarme</button>
+  <form action="" method="post">
+
+      {% csrf_token %}
+        {{form.as_p}}
+      <button type="submit">Iniciar secion</button>
+
+  </form>
+  <h3>¿aun no tiene una cuenta?</h3>
+      <button><a href="{% url 'Registro' %}">Registrarme</button>
+
+</div>
+
+</div>
+
 {% endblock contenidoQueCambia %}

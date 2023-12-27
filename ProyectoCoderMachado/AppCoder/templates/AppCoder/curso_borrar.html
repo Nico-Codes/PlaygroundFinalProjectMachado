@@ -4,14 +4,20 @@
 
 {% block contenidoQueCambia %}
 
-<h1>Borrar Curso</h1>
+<div class="relleno">
 
-<form action="" method="post">
+     <h1>Borrar Curso</h1>
 
-     {% csrf_token %}
-     Estas seguro que deseas borrar el curso {{curso.nombre}} - camada {{curso.camada}} ??
-     <input type="submit" value="Eliminar">
+     <form action="" method="post">
 
-</form>
+          {% csrf_token %}
+          Estas seguro que deseas borrar el curso {{curso.nombre}} - camada {{curso.camada}} ??
+          <button type="submit" value="Eliminar">Eliminar</button>
+
+     </form>
+
+
+</div>
+
 
 {% endblock contenidoQueCambia %}

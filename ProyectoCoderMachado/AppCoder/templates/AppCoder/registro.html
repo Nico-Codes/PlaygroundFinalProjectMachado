@@ -3,16 +3,24 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
+
+    <div class="relleno-curso">
 
     <h1>Registro</h1>
-    <form action="" method="POST">
+        <form action="" method="POST">
 
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Registrate!</button>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Registrate!</button>
 
-    </form>
+        </form>
 
-     <h3>¿ya tienes cuenta?</h3>
-     <button><a href="{% url 'Login' %}">iniciar secion</a></button>
+        <h3>¿ya tienes cuenta?</h3>
+        <button><a href="{% url 'Login' %}">iniciar secion</a></button>
+    
+    </div>
+
+</div>
+    
 {% endblock contenidoQueCambia %}

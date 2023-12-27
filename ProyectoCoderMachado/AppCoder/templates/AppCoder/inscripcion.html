@@ -3,32 +3,38 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
-<h1>Pagina Inscripcion</h1>
-<p>Se ha heredado todo desde la plantilla padre</p>
-
-{% if not request.user.is_authenticated %}
-<h2>Debes iniciar secion para poder inscribirte en un nuevo curso</h2>
-    <a href="{% url 'Login' %}"><button>Iniciar secion</button></a>
-{% endif %}
-
-{% if request.user.is_superuser %}
-    <h2>Lista de Inscripciones</h2>
-    <ul>
-        {% for inscripcion in inscripciones %}
-            <li>{{ inscripcion.curso }} - {{ inscripcion.nombre }} {{ inscripcion.apellido }} - {{ inscripcion.telefono }}</li>
-        {% endfor %}
-    </ul>
+<div class="relleno">
+    <h1>Pagina Inscripcion</h1>
     
-{% endif %}
-{% if request.user.is_authenticated %}
 
-    <form method="post" action="{% url 'inscripcion' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar</button>
-    </form>
+    {% if not request.user.is_authenticated %}
+    <h2>Debes iniciar secion para poder inscribirte en un nuevo curso</h2>
+        <a href="{% url 'Login' %}"><button>Iniciar secion</button></a>
     {% endif %}
 
+    {% if request.user.is_superuser %}
+        <h2>Lista de Inscripciones</h2>
+        <ul>
+            {% for inscripcion in inscripciones %}
+                <li>{{ inscripcion.curso }} - {{ inscripcion.nombre }} {{ inscripcion.apellido }} - {{ inscripcion.telefono }}</li>
+            {% endfor %}
+        </ul>
+        
+    {% endif %}
+    {% if request.user.is_authenticated %}
+        <div class="relleno-curso">
+
+        <form method="post" action="{% url 'inscripcion' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Enviar</button>
+                </form>
+                {% endif %}
+
+        </div>
+        
+
+
+</div>
 
 {% endblock contenidoQueCambia %}

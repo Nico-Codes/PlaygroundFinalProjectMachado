@@ -3,8 +3,9 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
-<h1>Profesor Detalle</h1>
+    <h1>Profesor Detalle</h1>
 
 <p>Nombre: <i> {{profesor.nombre}} </i></p>
 <p>Apellido: <i> {{profesor.apellido}} </i></p>
@@ -13,5 +14,7 @@
     <a href="{% url 'ListaProfesores' %}">Regresar</a>
 </p>
 </form>
+
+</div>
 
 {% endblock contenidoQueCambia %}

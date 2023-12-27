@@ -4,18 +4,26 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
-<h1>Editar Perfil</h1>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ miFormulario.as_p }}
-    <img src="{{ avatar_imagen.url }}" alt="Avatar" style="width: 100px; height: 100px;">
-    <input type="submit" value="Guardar cambios">
-  </form>
+<div class="relleno-curso">
 
-  
-  <button><a href="{% url 'cambiar_contrasenia' %}">Cambiar Contraseña</a></button>
+  <h1>Editar Perfil</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ miFormulario.as_p }}
+      <img src="{{ avatar_imagen.url }}" alt="Avatar" style="width: 100px; height: 100px;">
+      <input type="submit" value="Guardar cambios">
+    </form>
+
+    
+    <button><a href="{% url 'cambiar_contrasenia' %}">Cambiar Contraseña</a></button>
 
 
-  
+    
+
+</div>
+
+</div>
+
 {% endblock contenidoQueCambia %}

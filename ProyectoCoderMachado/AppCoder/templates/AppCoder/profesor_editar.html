@@ -3,15 +3,24 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
-<h1>Editar Profesor</h1>
+<div class="relleno-curso">
 
-<form action="" method="post">
+     <h1>Editar Profesor</h1>
 
-     {% csrf_token %}
-     {{form.as_p}}
-     <input type="submit" value="Editar">
+     <form action="" method="post">
 
-</form>
+          {% csrf_token %}
+          {{form.as_p}}
+          
+          <button type="submit" value="Editar">Editar</button>
+
+     </form>
+
+
+</div>
+
+</div>
 
 {% endblock contenidoQueCambia %}

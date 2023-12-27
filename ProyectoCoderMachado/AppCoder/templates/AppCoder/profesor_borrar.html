@@ -3,15 +3,19 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+ <div class="relleno">
 
-<h1>Borrar Profesor</h1>
+     <h1>Borrar Profesor</h1>
+     <form action="" method="post">
 
-<form action="" method="post">
+          {% csrf_token %}
+          Estas seguro que deseas borrar el profesor {{profesor.nombre}} - camada {{curso.camada}} ??
+          <input type="submit" value="Eliminar">
 
-     {% csrf_token %}
-     Estas seguro que deseas borrar el curso {{profesor.nombre}} - camada {{curso.camada}} ??
-     <input type="submit" value="Eliminar">
+     </form>
 
-</form>
+
+ </div>
+
 
 {% endblock contenidoQueCambia %}

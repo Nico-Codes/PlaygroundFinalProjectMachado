@@ -3,15 +3,21 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
+<div class="relleno-curso">
+     
 <h1>Crear Curso</h1>
 
 <form action="" method="post">
 
      {% csrf_token %}
      {{form.as_p}}
-     <input type="submit" value="Crear">
+     <button type="submit" value="Crear">Crear</button>
 
 </form>
 
+</div>
+
+</div>
 {% endblock contenidoQueCambia %}

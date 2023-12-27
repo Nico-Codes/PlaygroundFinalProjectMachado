@@ -3,8 +3,10 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
-<h1>Curso Detalle</h1>
+    
+<h1>Detalles del Curso</h1>
 
 <p>Nombre del Curso: <i> {{curso.nombre}} </i></p>
 <p>Camada: <i> {{curso.camada}} </i></p>
@@ -13,5 +15,8 @@
     <a href="{% url 'ListaCursos' %}">Regresar</a>
 </p>
 </form>
+
+</div>
+
 
 {% endblock contenidoQueCambia %}

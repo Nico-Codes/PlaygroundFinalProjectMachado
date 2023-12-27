@@ -3,12 +3,20 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<div class="relleno">
 
-<h2>Cambiar Contraseña</h2>
-  <form method="post" action="{% url 'cambiar_contrasenia' %}">
-    {% csrf_token %}
-    {{ form_contrasenia.as_p }}
-    <button type="submit">Cambiar Contraseña</button>
-  </form>
+<div class="relleno-curso">
+
+  <h2>Cambiar Contraseña</h2>
+    <form method="post" action="{% url 'cambiar_contrasenia' %}">
+      {% csrf_token %}
+      {{ form_contrasenia.as_p }}
+      <button type="submit">Cambiar Contraseña</button>
+    </form>
+
+
+</div>
+
+</div>
 
 {% endblock contenidoQueCambia %}
