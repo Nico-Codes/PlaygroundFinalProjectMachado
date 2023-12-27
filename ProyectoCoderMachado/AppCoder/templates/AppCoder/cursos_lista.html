@@ -9,7 +9,7 @@
 
 
 {% if request.user.is_authenticated and request.user.is_superuser %}
-    <a href="{% url 'NuevoCurso' %}">Nuevo Curso</a>
+    <button><a href="{% url 'NuevoCurso' %}">Nuevo Curso</a></button>
 {% endif %}
 
 {% for curso in cursos %}

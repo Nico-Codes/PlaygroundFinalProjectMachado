@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.inicio, name="inicio"),
-    path('cursos/', views.cursos, name="cursos"),
+   
     
     path('inscripcion/', views.inscripcion, name="inscripcion"),
     

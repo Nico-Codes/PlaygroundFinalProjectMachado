@@ -21,22 +21,7 @@ def inicio(request):
 def es_superusuario(user):
     return user.is_superuser
 
-@user_passes_test(es_superusuario)
-def cursos(request):
-    if request.method == "POST":
-        nuevo_formulario = CursoFormulario(request.POST)
-        if nuevo_formulario.is_valid():
-            informacion = nuevo_formulario.cleaned_data
-            nuevo_curso = Curso(
-                nombre=informacion["nombre"],
-                camada=informacion["camada"],
-                descripcion=informacion["descripcion"],
-            )
-            nuevo_curso.save()
-            return render(request, 'AppCoder/inicio.html')
 
-    nuevo_formulario = CursoFormulario()
-    return render(request, 'AppCoder/cursos.html', {"formulario": nuevo_formulario})
 
 @user_passes_test(es_superusuario)
 def profesores(request):
@@ -72,16 +57,20 @@ def inscripcion(request):
         nuevo_inscripto = InscripcionFormulario(request.POST)
         if nuevo_inscripto.is_valid():
             informacion = nuevo_inscripto.cleaned_data
-            Inscripcion.objects.create(
-                curso=informacion["curso"],
-                nombre=informacion["nombre"],
-                apellido=informacion["apellido"],
-                telefono=informacion["telefono"],
-            )
+            curso_elegido = informacion["curso"]
+            nombre = informacion["nombre"]
+            apellido = informacion["apellido"]
+            telefono = informacion["telefono"]
+
+            # Realiza las operaciones necesarias con los datos del formulario
+            # Por ejemplo, crear una nueva inscripción en la base de datos
+
             return render(request, 'AppCoder/mensaje_inscripcion.html')
+
     else:
         nuevo_inscripto = InscripcionFormulario()
-        return render(request, 'AppCoder/inscripcion.html', {"inscripcion": nuevo_inscripto})
+
+    return render(request, 'AppCoder/inscripcion.html', {"inscripcion": nuevo_inscripto})
 
 def es_superusuario(user):
     return user.is_superuser

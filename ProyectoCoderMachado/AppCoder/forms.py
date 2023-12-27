@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-from AppCoder.models import Profesor
+from AppCoder.models import Profesor, Curso
 
 class ProfesorForm(forms.ModelForm):
     class Meta:
@@ -9,7 +9,8 @@ class ProfesorForm(forms.ModelForm):
         fields = '__all__'
 
 class InscripcionFormulario(forms.Form):
-    curso = forms.CharField(max_length=40)
+    curso = forms.ModelChoiceField(queryset=Curso.objects.all())
+    
     nombre = forms.CharField(max_length=30)
     apellido = forms.CharField(max_length=30)
     telefono = forms.CharField(max_length=15, required=False)
