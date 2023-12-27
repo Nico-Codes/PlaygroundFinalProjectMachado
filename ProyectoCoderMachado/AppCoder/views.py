@@ -1,19 +1,19 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.views.generic.edit import FormView
 from django.http import HttpResponseForbidden
 from .forms import ProfesorForm, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm, InscripcionForm
 from .models import Curso, Inscripcion, Profesor, Avatar
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import InscripcionForm
+from django.shortcuts import render
 from AppCoder import forms
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+
+
 
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
@@ -192,10 +192,15 @@ def registro(request):
     if request.method == 'POST':
         form = UserCreationFormCustom(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, "AppCoder/inicio.html", {"mensaje": "Usuario Creado"})
+            user = form.save()
+
+            login(request, user)
+
+            return render(request, 'AppCoder/inicio.html', {'user': user})
+
     else:
         form = UserCreationFormCustom()
+
     return render(request, "AppCoder/registro.html", {"form": form})
 
 def editarPerfil(request):
@@ -216,15 +221,30 @@ def editarPerfil(request):
                 else:
                     Avatar.objects.create(user=usuario, imagen=miFormulario.cleaned_data.get('imagen'))
             miFormulario.save()
+
             return render(request, "AppCoder/usuario_cambios.html")
     else:
         miFormulario = UserEditForm(instance=usuario)
+
     return render(request, "AppCoder/editarPerfil.html", {"miFormulario": miFormulario, "avatar_imagen": avatar_imagen})
+
+@login_required
+def cambiar_contrasenia(request):
+    if request.method == 'POST':
+        form_contrasenia = PasswordChangeForm(user=request.user, data=request.POST)
+        if form_contrasenia.is_valid():
+            usuario = form_contrasenia.save()
+            update_session_auth_hash(request, usuario)
+            return render(request, "AppCoder/contrasenia_cambiada.html")
+
+    else:
+        form_contrasenia = PasswordChangeForm(user=request.user)
+
+    return render(request, 'AppCoder/cambiar_contrasenia.html', {'form_contrasenia': form_contrasenia})
 
 def Logout(request):
     logout(request)
     return render(request, "AppCoder/inicio.html")
 
-class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
-    template_name = 'AppCoder/cambiar_contrasenia.html'
-    success_url = reverse_lazy('EditarPerfil')
+def contrasenia_cambiada(request):
+    return render(request, 'AppCoder/contrasenia_cambiada.html')

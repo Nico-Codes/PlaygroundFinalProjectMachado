@@ -33,8 +33,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='inicio'), name='Logout'),
 
     path('editarPerfil/', views.editarPerfil, name="EditarPerfil"),
-    path('cambiarContrasenia', views.CambiarContrasenia.as_view(), name="CambiarContrasenia"),
-
+    path('cambiar_contrasenia/', views.cambiar_contrasenia, name='cambiar_contrasenia'),
+    path('contrasenia_cambiada/', views.contrasenia_cambiada, name='contraseña_cambiada'),
 
 ]   
 
