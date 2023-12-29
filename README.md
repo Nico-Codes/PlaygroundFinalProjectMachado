@@ -1,3 +1,6 @@
+DEMO PROYECTO
+link del video: https://drive.google.com/file/d/1HdOdBQrxDolcyWohBvWbAKRo0ZcclbQx/view?usp=sharing
+
 Playground Final Project Machado
 Este proyecto es una aplicación web desarrollada con Django que gestiona cursos, profesores e inscripciones.
 
