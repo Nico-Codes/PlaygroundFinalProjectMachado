@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from AppCoder import views
 
+from django.conf.urls import handler404
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('AppCoder.urls')),  # Asegúrate de tener esta línea incluida
 ]
+handler404 = views.Error404View.as_view()

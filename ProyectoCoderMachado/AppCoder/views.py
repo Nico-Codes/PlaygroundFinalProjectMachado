@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test, login_required
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponseForbidden
 from .forms import ProfesorFormulario, CursoFormulario, InscripcionFormulario, UserCreationFormCustom, UserEditForm
 from .models import Curso, Inscripcion, Profesor, Avatar
@@ -12,6 +12,8 @@ from django.shortcuts import render
 from AppCoder import forms
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
+from django.template import RequestContext
+
 
 
 
@@ -189,3 +191,7 @@ def Logout(request):
 
 def contrasenia_cambiada(request):
     return render(request, 'AppCoder/contrasenia_cambiada.html')
+
+
+class Error404View(TemplateView):
+    template_name = "AppCoder/error_404.html"

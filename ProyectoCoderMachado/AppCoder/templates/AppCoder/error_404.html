@@ -1,0 +1,16 @@
+{% extends 'AppCoder/padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+<div class="relleno">
+    <h1>PAGINA NO ENCONTRADA</h1>
+    <p>has ingresado a una pagina que no existe porfavor revisa en url o vuelva al inicio</p>
+    <button><a href="{% url 'inicio' %}">INICIO</a></button>
+</div>
+
+
+
+{% endblock contenidoQueCambia %}

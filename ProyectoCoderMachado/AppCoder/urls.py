@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
+
 urlpatterns = [
     path('', views.inicio, name="inicio"),
    
@@ -36,6 +37,8 @@ urlpatterns = [
     path('contrasenia_cambiada/', views.contrasenia_cambiada, name='contraseña_cambiada'),
 
     path('sobremi/', views.sobremi_view, name='sobremi'),
+
+   
 ]   
 
 urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
