@@ -12,8 +12,6 @@ from django.shortcuts import render
 from AppCoder import forms
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
-from django.template import RequestContext
-
 
 
 
@@ -191,7 +189,6 @@ def Logout(request):
 
 def contrasenia_cambiada(request):
     return render(request, 'AppCoder/contrasenia_cambiada.html')
-
 
 class Error404View(TemplateView):
     template_name = "AppCoder/error_404.html"
